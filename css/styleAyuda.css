@@ -1,0 +1,376 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing:border-box;
+
+}
+
+body {
+    font-family: monospace;
+}
+
+a {
+    text-decoration:none;
+    color: #333;
+
+}
+.contenedor{
+    width: 100%;
+    min-height: 100vh;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: minmax(88px, 90px) auto;
+    grid-template-rows: 60px auto;
+    grid-template-areas: "header header"
+                         "menu contenido";
+    transition: all .3s ease;
+}
+.contenedor.active {
+    grid-template-columns: minmax(300px,18%) auto;
+}
+/*------------------------ HEADER ------------------- */
+.header {
+    grid-area: header;
+    background: #DBD8DD;
+    padding: 0 20px; /* 0 arriba y abajo  20 derecha izquierda*/
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items:center;
+    justify-content: space-between;
+    grid-gap: 20px;
+    grid-template-areas: "logo buscqueda iconos"; 
+}
+.header .contenedor-logo {
+    grid-area: logo;
+    display: flex;
+    align-items: center;
+}
+.header .contenedor-logo .boton-menu{
+    border:none;
+    padding:10px;
+    background:none;
+    cursor:pointer;
+    font-size:18px;
+    border-radius: 100px;
+    width:50px;
+    height: 50px;
+    margin-right: 20px;
+    transition: all .5s;
+}
+.header .contenedor-logo .boton-menu:hover{
+    background: #E7E7E7;
+    transform: rotate(45deg);
+}
+.header .contenedor-logo .logo .fa-solid {
+    background: #190933;
+    padding: 7px 12px;
+    border-radius: 4px;
+    font-size:8px;
+    color: #fff;
+    position:relative; /* es para ponerlo para bajar o subir */
+    top:-1px;
+    margin-right: 4.5px;
+}
+.header .contenedor-logo .logo {
+    font-family: monospace, bold;
+    font-size: 16px;
+}
+
+.header .barra-busqueda {
+    grid-area: buscqueda;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header .barra-busqueda input {
+    min-width: 60%;
+    padding:0 15px;
+    height:40px;
+    line-height: 35px;
+    border:1px solid #ccc;
+    font-size:18px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.header .barra-busqueda button {
+   height: 40px;
+   border: 1px solid #ccc;
+   border-left: none;
+   color: #94A7B3;
+   padding: 0 25px;
+   cursor:pointer;
+}
+.header .barra-busqueda button:hover {
+background: #f5f5f5;
+}
+
+.header .botones-header {
+    grid-area: iconos;
+    display: flex;
+    align-items: center;
+}
+.header .botones-header button {
+    background: none;
+    border:none;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    padding: 7px 12px;
+    border-radius:100px;
+    color: #94A7B3;
+    margin-right: 20px;
+    cursor:pointer;
+}
+.header .botones-header button:hover {
+background: #E7E7E7;
+}
+.header .botones-header .avatar {
+width:  30px;
+height: 30px;
+    display: inline-block;
+}
+.header .botones-header .avatar img{
+    vertical-align: top;
+    width: 100%;
+    border-radius:100px;
+}
+
+
+/*------------------------ MENU LATERAL ------------------- */
+.menu-lateral{
+    grid-area: menu;
+    background: #DBD8DD;
+    overflow:hidden;
+}
+.menu-lateral a{
+    display: block;
+    padding: 25px 38px;
+    color: #000; 
+    min-width: 800px;
+}
+.menu-lateral a:hover{
+    background: #E5E1DC;
+}
+.menu-lateral a.active{
+    background: #E5E1DC;
+    font-weight: bold;
+}
+.menu-lateral .fa-solid{
+    color: #94A7B3;
+    margin-right: 32px;
+    width: 20px;
+    text-align: center;
+}
+.menu-lateral a.active .fa-solid{
+color: #190933;
+}
+.menu-lateral hr{
+    margin:20px 0;
+    border: 1px solid #dfdfdf;
+}
+/*------------------------ Contenido ------------------- */
+
+.main{
+    grid-area: contenido;   
+    background: #E9E5D8; /* E9E5D8 */
+    padding:40px;
+}
+.main .titulo{
+    margin-bottom:20px;
+}
+/* Estilos para la sección de contenido principal */
+.main .como-funciona {
+    background-color: #f5ebeb;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    display: flex;  
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    margin-right: 30px; /* EN PRUEBAS (este margen) */
+    position: relative; /* Agregamos posición relativa para los elementos con brillo */
+}
+
+.main .como-funciona-content {
+    flex: 1;
+}
+
+.main .titulo {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.main .como-funciona p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #666;
+}
+
+.main .como-funciona ol {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #666;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+.main .como-funciona ol li {
+    position:relative;
+    padding-left: 30px;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+/* Estilos para los elementos num1 a num5 */
+.main .como-funciona ol li .num5::before,
+.main .como-funciona ol li .num4::before,
+.main .como-funciona ol li .num3::before,
+.main .como-funciona ol li .num2::before,
+.main .como-funciona ol li .num1::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: #ffffff6e; /* Fondo semitransparente background: rgba(255, 255, 255, 0.2); */
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.main .como-funciona ol li .num5::before {
+    animation: shine 2s linear infinite 5s; /* Añadimos un retraso para que brille más tarde */
+}
+
+.main .como-funciona ol li .num4::before {
+    animation: shine 2s linear infinite 4s;
+}
+
+.main .como-funciona ol li .num3::before {
+    animation: shine 2s linear infinite 3s;
+}
+
+.main .como-funciona ol li .num2::before {
+    animation: shine 2s linear infinite 2s;
+}
+
+.main .como-funciona ol li .num1::before {
+    animation: shine 2s linear infinite 1.2s; /* Añadimos un retraso para que brille más tarde */
+}
+
+@keyframes shine {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.main .como-funciona ol li .num5 {
+    color: #190933 ;  
+}
+
+.main .como-funciona ol li .num4 {
+    color: #435b6a ; 
+}
+
+.main .como-funciona ol li .num3 {
+    color: #582562;
+}
+
+.main .como-funciona ol li .num2 {
+    color: #674f15; 
+}
+
+.main .como-funciona ol li .num1 {
+    color: #59a3f2 ;
+}
+.main .como-funciona button.btn-empezar {
+    background-color: #190933;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Agregamos transición para transformar */
+    margin-top: 25px;
+}
+.main .como-funciona button.btn-empezar:hover {
+    background-color: #111; /* Cambiamos el color de fondo al pasar el mouse */
+    transform: scale(1.1); /* Hacemos que el botón se agrande al pasar el mouse */
+}
+/*------------------------ MEDIA QUERY ------------------- */
+@media screen and (max-width: 1200px){
+    .header .contenedor-logo .logo span{
+        display: none;
+    }
+    .header .barra-busqueda input {
+        min-width: 100%;
+    }
+    .main .como-funciona-image {
+        display: none;
+}
+@media screen and (max-width: 992px){
+ 
+}
+}
+@media screen and (max-width: 768px){
+    .contenedor {
+        grid-template-columns: 1fr; /* Cambiamos a una sola columna */
+        grid-template-rows: auto auto; /* Añadimos filas adicionales para el contenido */
+        grid-template-areas: 
+            "header"
+            "menu"
+            "contenido"; /* Reorganizamos el área de contenido */    
+    }
+    .header {
+        padding: 20px;
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+        grid-template-areas: "logo iconos"
+                             "busqueda busqueda"; 
+    }    
+    .header .contenedor-logo .logo span {
+        display: inline;
+    }
+    .header .barra-busqueda input {
+        min-width: auto;
+        width: 100%;
+    }
+    .main .como-funciona {
+        flex-direction: column;
+    }
+
+      /* Estilos para el botón "Empezar Ahora" */
+      .main .como-funciona button.btn-empezar {
+        width: 100%; /* Hacemos que el botón ocupe todo el ancho disponible */
+        margin-right: 0; /* Quitamos el margen derecho */
+    }
+    /* Ajustamos el tamaño del logo en el encabezado */
+    .header .contenedor-logo .logo {
+        font-size: 14px; /* Reducimos el tamaño de la fuente del logo */
+    }
+    .main .como-funciona-content {
+        margin-bottom: 20px;
+    }
+
+    .main .como-funciona-image {
+        text-align: center;
+    }   
+}
+@media screen and (max-width: 576px){
+    .main .como-funciona .titulo,
+    .main .como-funciona ol {
+        display: none;
+    }
+    /* Mostrar el botón */
+    .main .como-funciona button.btn-empezar {
+        display: block;
+    }
+}
+

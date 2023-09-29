@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SummItUp</title>
+    <link href="manrope.ttf" rel="stylesheet">
+    <link rel="stylesheet" href="css/styleSubirResumen.css">
+    
+</head>
+<body>   
+  <div class="contenedor active" id="contenedor">       
+    <header class="header">
+        <div class="contenedor-logo">
+            <button id="boton-menu" class="boton-menu"><i class="fa-solid fa-bars-staggered"></i></button>
+            <a href="index.html" class="logo"><i class="fa-solid fa-book-open-reader"></i><span>SummItUp</span></a>
+        </div>
+        <div class="barra-busqueda">
+            <input type="text" placeholder="Buscar Resumen">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="botones-header">
+            <a href="SubirResumen.html">
+                <button><i class="fas fa-upload"></i></button>
+            </a>
+            <a href="filtrarResumen.html">     
+                <button><i class="fa-solid fa-filter"></i></button>
+            </a>
+            <a href="notificaciones.html">
+                <button><i class="fas fa-bell"></i></button></a>            
+            <a href="#registrar" class="avatar">
+                <img src="img/avatar.jpg">
+             </a>
+        </div>
+    </header>
+    <nav class="menu-lateral">
+        <a href="index.html"><i class="fa-solid fa-igloo"></i>Inicio</a>
+        <a href="guardados.html"><i class="fa-solid fa-bookmark"></i>Guardados</a>
+        <a href="historial.html"><i class="fa-solid fa-clock-rotate-left"></i>Historial</a>
+        <hr>
+        <a href="misResumenes"><i class="fa-solid fa-street-view"></i>Mis Resúmenes</a>
+        <a href="calificarResumenes.html"><i class="fa-solid fa-user-check"></i>Calificar Resúmenes</a>
+        <hr>
+        <a href="ajustes.html"><i class="fa-solid fa-wrench"></i>Ajustes</a>
+        <a href="reportar.html"><i class="fa-solid fa-flag"></i>Reportar Resumen</a>
+        <a href="Ayuda.html"><i class="fa-solid fa-handshake-angle"></i>Ayuda</a>
+        <a href="Feedback.html"><i class="fa-solid fa-comment-medical"></i>Feedback</a>
+    </nav>
+    <main class="main">
+    <section class="subir-resumen">
+        <h3 class="titulo">Subir un Resumen</h3>
+        <p class="descripcion">Sube tu resumen en formato PDF, Word o imagen arrastrándolo al logo o dándole al botón después de completar los datos del resumen para compartirlo con la comunidad.</p>
+        
+        <form class="formulario-subir" id="formulario-resumen">
+            <input type="file" accept=".pdf, .docx, .jpg, .png, .jpeg" id="archivo-resumen" required>
+            
+        <!-- Campo para el título del resumen -->
+        <div class="campo-formulario">
+            <label for="titulo-resumen" class="Primero">Título del Resumen:</label>
+            <input type="text" id="titulo-resumen" name="titulo-resumen" maxlength="50"> <!-- Por ejemplo, se permite un máximo de 50 caracteres -->
+            <div class="contador-caracteres">50 caracteres restantes</div>
+        </div>
+
+        <!-- Campo para las etiquetas -->
+        <div class="campo-formulario">
+            <label for="etiquetas">Etiquetas (separadas por comas con el prefijo #):</label>
+            <input type="text" id="etiquetas" class=" campo active" name="etiquetas" maxlength="100"> <!-- Por ejemplo, se permite un máximo de 100 caracteres -->
+            <div class="contador-caracteres">100 caracteres restantes</div>
+        </div>
+
+        <!-- Campo para la descripción del resumen -->
+        <div class="campo-formulario">
+            <label for="descripcion-resumen">Descripción del Resumen:</label>
+            <textarea id="descripcion-resumen" name="descripcion-resumen" rows="4" maxlength="200"></textarea> <!-- Por ejemplo, se permite un máximo de 200 caracteres -->
+            <div class="contador-caracteres">200 caracteres restantes</div>
+        </div>
+
+        <!-- Campo para la materia y ciclo académico -->
+        <div class="campo-formulario">
+            <label for="materia-ciclo">Materia / Ciclo Académico:</label>
+            <input type="text" id="materia-ciclo" name="materia-ciclo" maxlength="50"> <!-- Por ejemplo, se permite un máximo de 50 caracteres -->
+            <div class="contador-caracteres">50 caracteres restantes</div>
+        </div>
+
+        <!-- Campo para el lugar de estudios proveniente (opcional) -->
+        <div class="campo-formulario">
+            <label for="lugar-estudios">Lugar de Estudios (opcional):</label>
+            <input type="text" id="lugar-estudios" name="lugar-estudios" maxlength="50"> <!-- Por ejemplo, se permite un máximo de 50 caracteres -->
+            <div class="contador-caracteres">50 caracteres restantes</div>
+        </div>
+        <br>
+       
+        <div class="texto-y-logo">
+            <div class="logo-empresa" draggable="true">
+                <label for="archivo-resumen" class="arrastrar" type="file" accept=".pdf, .docx, .jpg, .png, .jpeg"required>
+               </label> <i class="fa-solid fa-book-open-reader"></i>
+            </div>
+        </div>
+        <label for="archivo-resumen" class="boton-subir">
+                
+            <span class="nombre-archivo">Seleccionar Archivo</span>
+        
+        </label>
+        <!-- Botón para subir el resumen -->
+        <button type="submit" class="btn-subir">Subir Resumen</button>
+    
+        </form>
+    </section>
+    <section class="resumen-summitup">
+        <h3 class="titulo-arriba">¿Quieres hacer el resumen a lo SummItUp?</h3>
+        <div class="contenido-abajo">
+            <p class="subtitulo">Tenemos nuestra propia manera de que escribas tu resumen con todas las funcionalidades, pero como somos una página nueva e indie, estamos recién trabajando en ello.</p>
+            <div class="imagen-summitup">
+                <img src="img/resumenwasbo.jpg" width="300" height="424.09" alt="Ejemplo de motor de resumen de SummItUp">
+            </div>
+            <button class="btn-summitup">SummitUp!</button>
+        </div>
+    </section>
+    
+    
+    
+    
+    
+    
+</main>       
+
+  </div>
+  <script src="https://kit.fontawesome.com/1a0a8d8c22.js" crossorigin="anonymous"></script>
+  <script src="js/mainSubirResumen.js"></script>
+  <script src="https://kit.fontawesome.com/1a0a8d8c22.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+</html>
