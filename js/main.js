@@ -13,3 +13,4 @@ window.addEventListener('resize',()=>{
     comprobarancho();
 })
 comprobarancho();
+

@@ -6,7 +6,8 @@
     <title>SummItUp</title>
     <link href="manrope.ttf" rel="stylesheet">
     <link rel="stylesheet" href="css/styleSubirResumen.css">
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
 </head>
 <body>   
   <div class="contenedor active" id="contenedor">       
@@ -51,8 +52,8 @@
         <h3 class="titulo">Subir un Resumen</h3>
         <p class="descripcion">Sube tu resumen en formato PDF, Word o imagen arrastrándolo al logo o dándole al botón después de completar los datos del resumen para compartirlo con la comunidad.</p>
         
-        <form class="formulario-subir" id="formulario-resumen">
-            <input type="file" accept=".pdf, .docx, .jpg, .png, .jpeg" id="archivo-resumen" required>
+        <form method="POST" class="formulario-subir" id="formulario-resumen" enctype="multipart/form-data">
+            <input type="file" name="archivosubida" accept=".pdf, .docx, .jpg, .png, .jpeg" id="archivo-resumen" required>
             
         <!-- Campo para el título del resumen -->
         <div class="campo-formulario">
@@ -64,7 +65,7 @@
         <!-- Campo para las etiquetas -->
         <div class="campo-formulario">
             <label for="etiquetas">Etiquetas (separadas por comas con el prefijo #):</label>
-            <input type="text" id="etiquetas" class=" campo active" name="etiquetas" maxlength="100"> <!-- Por ejemplo, se permite un máximo de 100 caracteres -->
+            <input type="text" id="etiquetas" class="campo active" name="etiquetas" maxlength="100"><!-- Por ejemplo, se permite un máximo de 100 caracteres -->
             <div class="contador-caracteres">100 caracteres restantes</div>
         </div>
 
@@ -92,7 +93,7 @@
        
         <div class="texto-y-logo">
             <div class="logo-empresa" draggable="true">
-                <label for="archivo-resumen" class="arrastrar" type="file" accept=".pdf, .docx, .jpg, .png, .jpeg"required>
+                <label for="archivo-resumen" name="archivosubida"class="arrastrar" type="file" accept=".pdf, .docx, .jpg, .png, .jpeg"required>
                </label> <i class="fa-solid fa-book-open-reader"></i>
             </div>
         </div>
@@ -102,7 +103,7 @@
         
         </label>
         <!-- Botón para subir el resumen -->
-        <button type="submit" class="btn-subir">Subir Resumen</button>
+        <button type="submit" class="btn-subir" onclick="enviarFormulario()">Subir Resumen</button>
     
         </form>
     </section>
@@ -125,10 +126,11 @@
 </main>       
 
   </div>
-  <script src="https://kit.fontawesome.com/1a0a8d8c22.js" crossorigin="anonymous"></script>
-  <script src="js/mainSubirResumen.js"></script>
-  <script src="https://kit.fontawesome.com/1a0a8d8c22.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
+    <script src="https://kit.fontawesome.com/1a0a8d8c22.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="js/mainSubirResumen.js"></script>
+    <script src="js/conexion.js"></script>
+  
 </body>
 </html>

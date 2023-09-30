@@ -15,6 +15,25 @@ window.addEventListener('resize',()=>{
 comprobarancho();
 const btnSubir1 = document.querySelector(".btn-subir");
 btnSubir1.disabled = true;
+// Declaración del array de etiquetas
+const etiquetasArray = [];
+
+// Función para agregar etiquetas al array
+function agregarEtiqueta() {
+    const etiquetaInput = document.getElementById('etiqueta');
+    const etiqueta = etiquetaInput.value.trim();
+    
+    if (etiqueta) {
+        etiquetasArray.push(etiqueta);
+        
+        // Limpiar el campo de entrada
+        etiquetaInput.value = '';
+        
+        // Mostrar las etiquetas en el contenedor
+        const etiquetasContainer = document.getElementById('etiquetas-container');
+        etiquetasContainer.innerHTML = etiquetasArray.map(etiqueta => `<span>${etiqueta}</span>`).join(', ');
+    }
+}
 
 //CARACTERES RESTANTES
 // Función para actualizar el contador de caracteres
@@ -172,3 +191,105 @@ document.addEventListener("DOMContentLoaded", function () {
     // También llamamos a la función al cargar la página para verificar si la animación ya debería estar activada
     activateAnimation();
 });
+
+
+// Función para manejar el envío del formulario desde tu HTML
+async function enviarFormulario() {
+    try {
+      // Obtén los datos del formulario y verifica que sean válidos
+      const tituloResumen = document.getElementById('titulo-resumen').value.trim();
+      const etiquetasText = document.getElementById('etiquetas').value.trim();
+      const descripcionResumen = document.getElementById('descripcion-resumen').value.trim();
+      const materiaCiclo = document.getElementById('materia-ciclo').value.trim();
+      const lugarEstudios = document.getElementById('lugar-estudios').value.trim();
+  
+      // Convierte el texto de etiquetas en un array eliminando los caracteres "#" y dividiendo por "#"
+      const etiquetas = etiquetasText.split(',').filter(tag => tag.trim() !== ' ');
+  
+      // Obtén el archivo seleccionado
+      const archivoSubida = document.getElementById('archivo-resumen').files[0];
+  
+      if (!tituloResumen || etiquetas.length === 0 || !descripcionResumen || !materiaCiclo || !archivoSubida) {
+        // Mostrar una alerta indicando que faltan campos obligatorios
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Por favor, completa todos los campos obligatorios y agrega al menos una etiqueta.',
+        });
+        return; // No se envía la solicitud al servidor
+      }
+  
+      // Mostrar los datos recopilados hasta ese momento en la consola
+      console.log('Datos recopilados hasta el momento:');
+      console.log('Título del resumen:', tituloResumen);
+      console.log('Etiquetas:', etiquetas);
+      console.log('Descripción del resumen:', descripcionResumen);
+      console.log('Materia o ciclo:', materiaCiclo);
+      console.log('Lugar de estudios:', lugarEstudios);
+  
+      console.log('Enviando formulario...');
+  
+      // Crear un objeto con los datos válidos
+      const data = {
+        'titulo-resumen': tituloResumen,
+        'etiquetas': etiquetas,
+        'descripcion-resumen': descripcionResumen,
+        'materia-ciclo': materiaCiclo,
+        'lugar-estudios': lugarEstudios,
+      };
+  
+      // Crear un objeto FormData que contenga tanto el JSON como el archivo
+      const formData = new FormData();
+      formData.append('data', JSON.stringify(data)); // Agregar el objeto JSON
+      formData.append('archivo-resumen', archivoSubida); // Agregar el archivo de subida
+      
+      // Mostrar el contenido de formData
+        console.log('Contenido de formData:');
+        for (const entry of formData.entries()) {
+        const [key, value] = entry;
+        if (key === 'archivo-resumen') {
+            // Mostrar solo el título del archivo
+            console.log('Nombre del archivo:', value.name);
+        } else {
+            console.log(`${key}: ${value}`);
+        }
+        }
+
+
+
+
+      const response = await fetch('http://localhost:3000/guardar-resumen', {
+        method: 'POST',
+        body: formData,
+      });
+  
+      // Verificar la respuesta del servidor
+      if (response.ok) {
+        // La solicitud fue exitosa, muestra una alerta de éxito con SweetAlert2
+        await Swal.fire({
+          icon: 'success',
+          title: 'Éxito',
+          text: 'Resumen guardado con éxito',
+        });
+  
+        // Puedes realizar otras acciones aquí, como limpiar el formulario, recargar la página, etc.
+      } else {
+        console.error('Error en la solicitud:', response.status, response.statusText);
+        // La solicitud tuvo un error, muestra una alerta de error con SweetAlert2
+        await Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Error al guardar el resumen',
+        });
+      }
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error);
+  
+      // En caso de error, muestra una alerta de error con SweetAlert2
+      await Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Error al enviar el formulario',
+      });
+    }
+  }

@@ -28,6 +28,32 @@ a {
 .contenedor.active {
     grid-template-columns: minmax(300px,18%) auto;
 }
+/* Estilos para el cuerpo de la alerta */
+.custom-alert {
+    background-color: #ff5733; /* Color de fondo */
+    color: white; /* Color del texto */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 15px; /* Espaciado interno */
+    font-size: 18px; /* Tamaño de fuente */
+    text-align: center; /* Alineación de texto */
+    position: absolute; /* Posición absoluta */
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Centra completamente */
+    z-index: 9999; /* Z-index alto para superponer a otros elementos */
+}
+
+/* Estilos para el triángulo de la alerta */
+.custom-alert::before {
+    content: ""; /* Contenido vacío */
+    position: absolute; /* Posición absoluta */
+    top: -10px; /* Posicionamiento superior */
+    left: 50%; /* Posicionamiento izquierdo al 50% del elemento padre */
+    margin-left: -10px; /* Alineación horizontal del triángulo */
+    border-width: 10px; /* Tamaño del triángulo */
+    border-style: solid; /* Estilo de borde sólido */
+    border-color: transparent transparent #ff5733 transparent; /* Color de borde */
+}
 /*------------------------ HEADER ------------------- */
 .header {
     grid-area: header;

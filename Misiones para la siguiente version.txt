@@ -1,0 +1,162 @@
+
+VERSION pre-alpha 1.1
+Cambios:
+Añadido de servidor básico de pruebas
+Avanze backend
+
+MISIONES PARA LA pre-alpha 1.2
+
+DEJAR DE USAR ID DE USUARIO INVENTADAS (777) MEDIANTE LA CREACION DE REGISTAR 6 horas
+hacer que la consola solo te muestre como opcion "SÍ" si hay una archivo_pdf en una entidad de una tabla 1 hora
+LUGAR BÁSICO DE PUBLICACION (RECIEN POSTEADOS) 8 horas
+
+prefijos por gpt:
+ultra profesional y moderno
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nvp
+watch nodejs
+
+Si deseas que los PDFs subidos se almacenen en tu base de datos de manera permanente en lugar de utilizar un servicio de carga temporal como File.io, necesitarás configurar un servidor y una base de datos para gestionar el almacenamiento de los archivos. A continuación, te proporcionaré una descripción general de cómo puedes lograr esto utilizando un servidor Node.js y una base de datos PostgreSQL.
+
+Paso 1: Configurar tu Servidor y Base de Datos
+
+Asegúrate de tener Node.js y npm instalados en tu sistema.
+
+Configura un servidor Node.js utilizando Express.js para gestionar las solicitudes HTTP. Puedes crear una nueva carpeta para tu proyecto y ejecutar npm init -y para iniciar un nuevo proyecto Node.js.
+
+Instala las dependencias necesarias, incluyendo Express.js y el controlador de PostgreSQL (pg).
+
+bash
+Copy code
+npm install express pg multer body-parser
+Configura una base de datos PostgreSQL donde almacenarás los datos de los archivos PDF subidos.
+Paso 2: Crear el Formulario HTML para Subir Archivos
+
+Crea un formulario HTML en tu página web que permita a los usuarios seleccionar y subir archivos PDF. Utiliza el elemento <input type="file"> en tu formulario.
+
+html
+Copy code
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subir Archivo PDF</title>
+</head>
+<body>
+    <h1>Subir Archivo PDF</h1>
+    <form action="/subir-pdf" method="post" enctype="multipart/form-data">
+        <input type="file" name="pdf" accept=".pdf" required>
+        <button type="submit">Subir</button>
+    </form>
+</body>
+</html>
+Paso 3: Configurar el Servidor para Manejar la Subida de Archivos
+
+En tu servidor Node.js, configura una ruta para manejar la subida de archivos PDF. Utiliza la biblioteca multer para procesar la carga de archivos y guarda los datos del archivo en la base de datos PostgreSQL.
+
+javascript
+Copy code
+const express = require('express');
+const multer = require('multer');
+const { Pool } = require('pg');
+const bodyParser = require('body-parser');
+
+const app = express();
+const port = 3000;
+
+const pool = new Pool({
+  user: 'tu_usuario',
+  host: 'localhost',
+  database: 'tu_base_de_datos',
+  password: 'tu_contraseña',
+  port: 5432,
+});
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Configuración de multer para guardar archivos PDF
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+app.get('/', (req, res) => {
+  // Mostrar el formulario HTML
+  res.sendFile(__dirname + '/formulario.html');
+});
+
+app.post('/subir-pdf', upload.single('pdf'), (req, res) => {
+  // Obtener el archivo PDF desde la solicitud
+  const pdfData = req.file.buffer;
+
+  // Insertar los datos del PDF en la base de datos
+  const query = 'INSERT INTO pdfs (archivo_pdf) VALUES ($1)';
+  pool.query(query, [pdfData], (err, result) => {
+    if (err) {
+      console.error('Error al insertar el archivo PDF en la base de datos:', err);
+      res.status(500).json({ error: 'Hubo un error al guardar el PDF' });
+    } else {
+      console.log('Archivo PDF insertado correctamente en la base de datos');
+      res.json({ message: 'PDF guardado correctamente' });
+    }
+  });
+});
+
+app.listen(port, () => {
+  console.log(`Servidor en ejecución en http://localhost:${port}`);
+});
+Paso 4: Configurar una Tabla en la Base de Datos
+
+Asegúrate de que tu base de datos PostgreSQL tenga una tabla donde puedas almacenar los datos de los archivos PDF. Aquí hay un ejemplo de cómo podría ser la definición de la tabla:
+
+sql
+Copy code
+CREATE TABLE pdfs (
+  id SERIAL PRIMARY KEY,
+  archivo_pdf BYTEA
+);
+En este ejemplo, se utiliza el tipo de datos BYTEA para almacenar el contenido binario del archivo PDF en la base de datos.
+
+Una vez configurado, cuando un usuario seleccione y envíe un archivo PDF a través del formulario, el servidor lo procesará y lo almacenará en la base de datos PostgreSQL de forma permanente.
+
+Ten en cuenta que este es un ejemplo simplificado y en un entorno de producción deberás considerar aspectos de seguridad, gestión de archivos duplicados y otros detalles adicionales.
+
+
+
+psql -U postgres -d submmitupdb -h localhost -p 5432
+
+
+
+
