@@ -1,0 +1,669 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing:border-box;
+
+}
+
+body {
+    font-family: monospace;
+}
+
+a {
+    text-decoration:none;
+    color: #333;
+
+}
+.contenedor{
+    width: 100%;
+    min-height: 100vh;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: minmax(88px, 90px) auto;
+    grid-template-rows: 60px auto;
+    grid-template-areas: "header header"
+                         "menu contenido";
+    transition: all .3s ease;
+}
+.contenedor.active {
+    grid-template-columns: minmax(300px,18%) auto;
+}
+/*------------------------ HEADER ------------------- */
+.header {
+    grid-area: header;
+    background: #DBD8DD;
+    padding: 0 20px; /* 0 arriba y abajo  20 derecha izquierda*/
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items:center;
+    justify-content: space-between;
+    grid-gap: 20px;
+    grid-template-areas: "logo buscqueda iconos"; 
+}
+.header .contenedor-logo {
+    grid-area: logo;
+    display: flex;
+    align-items: center;
+}
+.header .contenedor-logo .boton-menu{
+    border:none;
+    padding:10px;
+    background:none;
+    cursor:pointer;
+    font-size:18px;
+    border-radius: 100px;
+    width:50px;
+    height: 50px;
+    margin-right: 20px;
+    transition: all .5s;
+}
+.header .contenedor-logo .boton-menu:hover{
+    background: #E7E7E7;
+    transform: rotate(45deg);
+}
+.header .contenedor-logo .logo .fa-solid {
+    background: #190933;
+    padding: 7px 12px;
+    border-radius: 4px;
+    font-size:8px;
+    color: #fff;
+    position:relative; /* es para ponerlo para bajar o subir */
+    top:-1px;
+    margin-right: 4.5px;
+}
+.header .contenedor-logo .logo {
+    font-family: monospace, bold;
+    font-size: 16px;
+}
+
+.header .barra-busqueda {
+    grid-area: buscqueda;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header .barra-busqueda input {
+    min-width: 60%;
+    padding:0 15px;
+    height:40px;
+    line-height: 35px;
+    border:1px solid #ccc;
+    font-size:18px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.header .barra-busqueda button {
+   height: 40px;
+   border: 1px solid #ccc;
+   border-left: none;
+   color: #94A7B3;
+   padding: 0 25px;
+   cursor:pointer;
+}
+.header .barra-busqueda button:hover {
+background: #f5f5f5;
+}
+
+.header .botones-header {
+    grid-area: iconos;
+    display: flex;
+    align-items: center;
+}
+.header .botones-header button {
+    background: none;
+    border:none;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    padding: 7px 12px;
+    border-radius:100px;
+    color: #94A7B3;
+    margin-right: 20px;
+    cursor:pointer;
+}
+.header .botones-header button:hover {
+background: #E7E7E7;
+}
+.header .botones-header .avatar {
+width:  30px;
+height: 30px;
+    display: inline-block;
+}
+.header .botones-header .avatar img{
+    vertical-align: top;
+    width: 100%;
+    border-radius:100px;
+}
+
+
+/*------------------------ MENU LATERAL ------------------- */
+.menu-lateral{
+    grid-area: menu;
+    background: #DBD8DD;
+    overflow:hidden;
+    transition: transform 0.3s ease;
+    font-size: 17px;
+}
+.menu-lateral a{
+    display: block;
+    padding: 25px 38px;
+    color: #000; 
+    min-width: 800px;
+}
+.menu-lateral a:hover{
+    background: #E5E1DC;
+}
+.menu-lateral a.active{
+    background: #E5E1DC;
+    font-weight: bold;
+}
+.menu-lateral .fa-solid{
+    color: #94A7B3;
+    margin-right: 32px;
+    width: 20px;
+    text-align: center;
+}
+.menu-lateral a.active .fa-solid{
+color: #190933;
+}
+.menu-lateral hr{
+    margin:20px 0;
+    border: 1px solid #dfdfdf;
+}
+/*------------------------ Contenido ------------------- */
+/* Estilos personalizados para los selectores dentro de .main */
+.main select {
+    width: 100%; /* Ancho del selector */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+.main {
+    grid-area: contenido;
+    background: #E9E5D8;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alinea los elementos en la parte superior */
+  }
+  
+  /* Estilos para el contenedor principal de Select2 */
+  .custom-select2-container {
+    /* Personaliza los estilos del contenedor principal aquí */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Estilos para el menú desplegable de Select2 */
+  .custom-select2-dropdown {
+    /* Personaliza los estilos del menú desplegable aquí */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Estilos para la flecha desplegable */
+  .select2-selection__arrow {
+    /* Personaliza los estilos de la flecha aquí */
+    background-color: transparent;
+    color: #190933c7; /* Cambia el color de la flecha */
+    font-size: 14px; /* Tamaño de la flecha */
+  }
+    
+  .busqueda {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+  }
+  
+  .filtros {
+    flex-grow: 1; /* Los filtros ocuparán todo el espacio disponible en la primera fila */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los filtros se envuelvan si el espacio es insuficiente */
+    gap: 20px;
+    align-items: center; /* Alinea los filtros verticalmente con el botón */
+  }
+  /* Agrega estilos para las pestañas de Carreras y Universidades */
+.filtro-carreras,
+.filtro-universidades {
+  display: none;
+}
+/* Estilos para el input de Tema */
+.filtro input.tema {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  /* Estilo al enfocar el input */
+  .filtro input.tema:focus {
+    border-color: #190933a5;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+/* Estilo para el botón de búsqueda */
+#buscar {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  animation: pulse 4s infinite;
+  width: 80%; /* Ocupa el 80% del ancho disponible en el centro */
+  font-size: 18px;
+  margin-left: 10%; /* Centra horizontalmente en el centro del contenedor */
+  margin-right: 10%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+/* Estilo para las opciones seleccionadas en los selectores múltiples */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: #275a91;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Estilo para el texto dentro de los selectores múltiples */
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  color: #fff;
+  margin-right: 5px;
+}
+
+
+  .filtro {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    width: calc(20% - 20px); /* Aproximadamente 25% de ancho y 20px de espacio entre filtros */
+  }
+  
+  .filtro h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+  
+  select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .boton-buscar {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    animation: pulse 4s infinite;
+    width: 80%; /* Ocupa el 80% del ancho disponible en el centro */
+    font-size: 18px;
+    margin-left: 10%; /* Centra horizontalmente en el centro del contenedor */
+    margin-right: 10%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+  }
+  .boton-buscar p{
+    animation: pulse-white 1s infinite; /* Aplica la animación solo al texto */
+    animation: pulse-scale 0.5s infinite;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 1.3rem;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 0 10px rgba(25, 9, 51, 0.8), 0 0 20px rgba(25, 9, 51, 0.6);
+      background-color: #190933;
+    }
+    25% {
+      box-shadow: 0 0 20px rgba(90, 61, 137, 0.6), 0 0 30px rgba(83, 10, 200, 0.4);
+      background-color: #1f0b42ef;
+    }
+    50% {
+      box-shadow: 0 0 10px rgba(25, 9, 51, 0.894), 0 0 20px rgba(25, 9, 51, 0.6);
+      background-color: #190933da;
+    }
+    75% {
+      box-shadow: 0 0 20px rgba(25, 9, 51, 0.6), 0 0 30px rgba(25, 9, 51, 0.4);
+      background-color: #1f0b42bd;
+    }
+   
+  }
+  @keyframes pulse-white {
+    0%, 100% {
+      box-shadow: 0 0 10px rgba(25, 9, 51, 0.8), 0 0 20px rgba(25, 9, 51, 0.6);
+      background-color: #1c0202; /* Cambiar a blanco */
+    }
+    25% {
+      box-shadow: 0 0 20px rgba(90, 61, 137, 0.6), 0 0 30px rgba(83, 10, 200, 0.4);
+      background-color: #100101ef; /* Cambiar a blanco con transparencia */
+    }
+    50% {
+      box-shadow: 0 0 10px rgba(25, 9, 51, 0.894), 0 0 20px rgba(25, 9, 51, 0.6);
+      background-color: #2d0606da; /* Cambiar a blanco con transparencia */
+    }
+    75% {
+      box-shadow: 0 0 20px rgba(25, 9, 51, 0.6), 0 0 30px rgba(25, 9, 51, 0.4);
+      background-color: #360a0abd; /* Cambiar a blanco con transparencia */
+    }
+    
+  }
+  @keyframes pulse-scale {
+    0%, 100% {
+      transform: scale(1); /* Tamaño original */
+    }
+    50% {
+      transform: scale(1.1); /* Aumenta el tamaño al 110% */
+    }
+  }
+  
+  .boton-buscar:hover {
+    background-color: #190933;
+    animation: none;
+  }
+  
+  .resumenes-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 60px;
+    justify-content: center;
+    margin-top: 20px; /* Espacio entre la primera y segunda fila */
+  }
+  
+
+/*  ------------------------------------------------------SECCION DE RESUMEN------------------------*/
+
+/* Cambia los colores y estilos para los elementos clave */
+.resumenes-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.resumenes-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+    justify-content: center; /* Centra las columnas horizontalmente */
+    gap: 20px;
+    padding: 20px;
+    background-color: #d3161630;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.resumen-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    transition: transform 0.8s ease-in-out;
+
+}
+
+.resumen-card h2 {
+    font-size: 24px;
+    margin: 0;
+    color: #333;
+}
+
+.resumen-card p {
+    font-size: 16px;
+    color: #666;
+    margin-top: 10px;
+}
+
+.etiquetas {
+    margin-top: 10px;    
+}
+
+.etiquetas span {
+    background-color: #ffcccba7; /* Color piel */
+    color: #333; /* Color de texto */
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 20px; /* Hace que las etiquetas sean más redondas */
+    margin-right: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.etiquetas span::before {
+    content: 'x'; /* Agrega una "x" antes del texto */
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+
+.etiquetas span:hover {
+    background-color: #ffcccb91;
+    transform: scale(1.05);
+}
+
+.descargar {
+    color: #190933;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+    display: inline-block;
+    border: 2px solid #190933;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 10px rgba(0, 128, 255, 0.7);
+}
+
+.descargar:hover {
+    background-color: #190933;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 0 20px rgba(0, 128, 255, 0.9);
+    animation: pulse1 1s infinite; /* Agrega la animación de pulso */
+}
+
+@keyframes pulse1 {
+    0% {
+        transform: scale(1); /* Escala normal */
+    }
+    50% {
+        transform: scale(1.1); /* Escala aumentada al 50% de la animación */
+    }
+    100% {
+        transform: scale(1); /* Vuelve a la escala normal al final de la animación */
+    }
+}
+
+/* Estilos generales para la tarjeta de error con animación de pulso */
+.error-card {
+  background-color: #f44336; /* Color de fondo rojo */
+  color: #fff; /* Color del texto blanco */
+  text-align: center;
+  padding: 40px; /* Aumentar el espacio interior */
+  border-radius: 20px; /* Mayor redondez */
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); /* Sombra roja más pronunciada */
+  animation: pulse3 2s infinite; /* Animación de pulso */
+  transition: transform 0.2s; /* Transición para el efecto de agrandamiento al pasar el mouse */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+/* Efecto de agrandamiento al pasar el mouse */
+.error-card:hover {
+  transform: scale(1.05);
+}
+
+/* Título del error en una caja con bordes suaves */
+.error-title-box {
+  background-color: #c70000; /* Color de fondo más oscuro */
+  padding: 20px; /* Aumentar el espacio interior */
+  border-radius: 10px; /* Mayor redondez */
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.8); /* Sombra roja más pronunciada */
+  margin-bottom: 20px; /* Espacio inferior para el título */
+}
+
+/* Título del error */
+.error-title-box h2 {
+  font-size: 32px; /* Tamaño de fuente más grande */
+}
+
+/* Contenedor para el mensaje de error y posibles razones */
+.error-content {
+  text-align: left; /* Alineación del texto a la izquierda */
+  margin-top: 40px; /* Espacio superior para el contenido */
+}
+
+/* Caja para el mensaje de error y posibles razones con bordes suaves */
+.error-message-box {
+  background-color: #ff6f6f; /* Color de fondo más claro */
+  padding: 30px; /* Aumentar el espacio interior */
+  border-radius: 10px; /* Mayor redondez */
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); /* Sombra roja más pronunciada */
+  margin-bottom: 40px; /* Espacio inferior para el mensaje */
+}
+
+/* Mensaje de error */
+.error-message-box p {
+  font-size: 18px; /* Tamaño de fuente del mensaje de error */
+  color: #444; /* Contraste en el color de la letra */
+}
+
+/* Lista de posibles razones */
+.error-message-box ul {
+  list-style-type: disc; /* Tipo de viñeta */
+  margin-left: 30px; /* Sangría a la izquierda para la lista */
+}
+
+/* Caja para cada razón con bordes suaves y efecto de brillo */
+.error-message-box li {
+  font-size: 16px; /* Tamaño de fuente para las razones */
+  background-color: #ffc8c8; /* Color de fondo más claro para las razones */
+  border-radius: 10px; /* Mayor redondez */
+  padding: 10px; /* Aumentar el espacio interior */
+  margin: 10px 0; /* Mayor espacio vertical entre razones */
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); /* Sombra roja suave */
+  animation: shine 2s infinite; /* Efecto de brillo suave */
+  color: #444; /* Contraste en el color de la letra */
+}
+
+/* Estilos para la caja que contiene la imagen triste */
+.error-image-box {
+  text-align: center;
+  margin-top: 20px; /* Espacio superior para la imagen */
+}
+
+/* Estilos para la imagen triste */
+.error-image {
+  display: block;
+  width: 50%; /* Ancho del 50% del contenedor padre */
+  height: auto; /* Autoajustar la altura para que sea igual que la anchura */
+  max-width: 100%; /* Ancho máximo de la imagen */
+  margin: 0 auto; /* Centrar horizontalmente */
+  border: 5px solid #fff; /* Agregar un borde blanco de 5px */
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.6); /* Sombra roja suave */
+  animation: moveBorder 2s alternate infinite; /* Animación de movimiento del borde */
+}
+
+
+/* Efecto de agrandamiento al pasar el mouse para elementos individuales */
+.error-card .elemento:hover {
+  transform: scale(1.1); /* Escala del 110% al pasar el mouse */
+}
+
+/* Animación de pulso */
+@keyframes pulse3 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Efecto de brillo suave */
+@keyframes shine {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 400% 0; /* Hemos incrementado el valor para que sea más notorio */
+  }
+}
+
+/* Animación de movimiento del borde */
+@keyframes moveBorder {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(5px, 5px); /* Mueve el borde 5px hacia la derecha y hacia abajo */
+  }
+}
+
+
+
+
+
+  /* Estilos adicionales para los resúmenes en la segunda fila (resumen-unico, resumen-dos, etc.) */
+  
+/*------------------------ MEDIA QUERY ------------------- */
+@media (max-width: 768px) {
+
+  }  
+@media screen and (max-width: 1200px){
+    .header .contenedor-logo .logo span{
+        display: none;
+    }
+    .header .barra-busqueda input {
+        min-width: 100%;
+    }
+}
+@media screen and (max-width: 992px){
+
+}
+@media screen and (max-width: 768px){
+    .contenedor {
+        grid-template-rows: auto;       
+    }
+    .header {
+        padding: 20px;
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+        grid-template-areas: "logo iconos"
+                             "busqueda busqueda"; 
+    }    
+    .header .contenedor-logo .logo span {
+        display: inline;
+    }
+    .header .barra-busqueda input {
+        min-width: auto;
+        width: 100%;
+    }   
+}
+@media screen and (max-width: 576px){
+
+}
+

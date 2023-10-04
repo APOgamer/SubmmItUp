@@ -27,6 +27,12 @@ async function getAllDataFromAllTables() {
     // Iterar sobre las tablas y obtener los datos de cada una
     for (const tableRow of tablesResult.rows) {
       const tableName = tableRow.table_name;
+
+      // Verificar si la tabla es 'archivos_resumenes' y omitirla si lo es
+      if (tableName === 'archivos_resumenes') {
+        continue; // Salta al siguiente ciclo de iteración
+      }
+
       console.log(`Datos de la tabla "${tableName}":`);
 
       const dataQuery = `SELECT * FROM ${tableName}`;
@@ -48,6 +54,10 @@ async function getAllDataFromAllTables() {
     client.release(); // Liberar el cliente de la pool cuando hayamos terminado
   }
 }
+
+
+
+
 
 // Función para ejecutar un comando SQL
 function ejecutarComandoSQL(comando) {
@@ -165,35 +175,75 @@ async function showAllTables() {
 
 
 // Llama a la función showAllTablesPlus
+/*
   showAllTablesPlus()
     .catch(err => {
       console.error('Error al mostrar las tablas y atributos:', err);
     });
-    
-  
+    */
+   
     
   
   
 /*
 node js/consultas.js
-
+*/
 
 // Ejemplo de uso
 const comandoSQL = `
-INSERT INTO usuarios (id, nombre_usuario, email, contrasena)
-VALUES (777, 'Usuario777', 'usuario777@example.com', 'contrasena777');
+
 `;
 
-ejecutarComandoSQL(comandoSQL);
-*/
-/* */
+//ejecutarComandoSQL(comandoSQL);
+
+ 
 // Llamar a la función para obtener y mostrar los datos de todas las tablas
+
 getAllDataFromAllTables()
     .catch((error) => {
         console.error('Error:', error);
     });
-
+    /*
+*/
 
 /* 
 node js/consultas.js
 */
+
+async function buscarResumenesPorTema(tema) {
+  try {
+    const query = `
+      SELECT r.id, r.titulo_resumen, r.descripcion_resumen, r.etiquetas, r.materia_ciclo, r.lugar_estudios
+      FROM resumenes r
+      WHERE
+        r.titulo_resumen ILIKE $1 OR
+        r.descripcion_resumen ILIKE $1 OR
+        r.materia_ciclo ILIKE $1 OR
+        r.lugar_estudios ILIKE $1
+    `;
+
+    const result = await pool.query(query, [`%${tema}%`]);
+
+    if (result.rows.length > 0) {
+      console.log('Se encontraron resúmenes:');
+      result.rows.forEach((resumen) => {
+        console.log('ID:', resumen.id);
+        console.log('Título:', resumen.titulo_resumen);
+        console.log('Descripción:', resumen.descripcion_resumen);
+        console.log('Etiquetas:', resumen.etiquetas);
+        console.log('Materia Ciclo:', resumen.materia_ciclo);
+        console.log('Lugar de Estudios:', resumen.lugar_estudios);
+        console.log('----------------------');
+      });
+    } else {
+      console.log('No se encontraron resúmenes.');
+    }
+  } catch (error) {
+    console.error('Error al buscar resúmenes:', error);
+  }
+}
+
+// Ejemplo de uso
+const tema = 'PDF'; // Cambia 'PDF' al valor que deseas buscar en todos los campos de la tabla resumenes
+//buscarResumenesPorTema(tema);
+

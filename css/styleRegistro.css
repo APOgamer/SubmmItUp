@@ -1,0 +1,422 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing:border-box;  
+}
+
+body {
+    font-family: monospace;
+}
+
+a {
+    text-decoration:none;
+    color: #333;
+
+}
+.contenedor{
+    width: 100%;
+    min-height: 100vh;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: minmax(88px, 90px) auto;
+    grid-template-rows: 60px auto;
+    grid-template-areas: "header header"
+                         "menu contenido";
+    transition: all .3s ease;
+}
+.contenedor.active {
+    grid-template-columns: minmax(300px,18%) auto;
+}
+/* Estilos para el cuerpo de la alerta */
+.custom-alert {
+    background-color: #ff5733; /* Color de fondo */
+    color: white; /* Color del texto */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 15px; /* Espaciado interno */
+    font-size: 18px; /* Tamaño de fuente */
+    text-align: center; /* Alineación de texto */
+    position: absolute; /* Posición absoluta */
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Centra completamente */
+    z-index: 9999; /* Z-index alto para superponer a otros elementos */
+}
+
+/* Estilos para el triángulo de la alerta */
+.custom-alert::before {
+    content: ""; /* Contenido vacío */
+    position: absolute; /* Posición absoluta */
+    top: -10px; /* Posicionamiento superior */
+    left: 50%; /* Posicionamiento izquierdo al 50% del elemento padre */
+    margin-left: -10px; /* Alineación horizontal del triángulo */
+    border-width: 10px; /* Tamaño del triángulo */
+    border-style: solid; /* Estilo de borde sólido */
+    border-color: transparent transparent #ff5733 transparent; /* Color de borde */
+}
+/*------------------------ HEADER ------------------- */
+.header {
+    grid-area: header;
+    background: #DBD8DD;
+    padding: 0 20px; /* 0 arriba y abajo  20 derecha izquierda*/
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items:center;
+    justify-content: space-between;
+    grid-gap: 20px;
+    grid-template-areas: "logo buscqueda iconos"; 
+}
+.header .contenedor-logo {
+    grid-area: logo;
+    display: flex;
+    align-items: center;
+}
+.header .contenedor-logo .boton-menu{
+    border:none;
+    padding:10px;
+    background:none;
+    cursor:pointer;
+    font-size:18px;
+    border-radius: 100px;
+    width:50px;
+    height: 50px;
+    margin-right: 20px;
+    transition: all .5s;
+}
+.header .contenedor-logo .boton-menu:hover{
+    background: #E7E7E7;
+    transform: rotate(45deg);
+}
+.header .contenedor-logo .logo .fa-solid {
+    background: #190933;
+    padding: 7px 12px;
+    border-radius: 4px;
+    font-size:8px;
+    color: #fff;
+    position:relative; /* es para ponerlo para bajar o subir */
+    top:-1px;
+    margin-right: 4.5px;
+}
+.header .contenedor-logo .logo {
+    font-family: monospace, bold;
+    font-size: 16px;
+}
+
+.header .barra-busqueda {
+    grid-area: buscqueda;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header .barra-busqueda input {
+    min-width: 60%;
+    padding:0 15px;
+    height:40px;
+    line-height: 35px;
+    border:1px solid #ccc;
+    font-size:18px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.header .barra-busqueda button {
+   height: 40px;
+   border: 1px solid #ccc;
+   border-left: none;
+   color: #94A7B3;
+   padding: 0 25px;
+   cursor:pointer;
+}
+.header .barra-busqueda button:hover {
+background: #f5f5f5;
+}
+
+.header .botones-header {
+    grid-area: iconos;
+    display: flex;
+    align-items: center;
+}
+.header .botones-header button {
+    background: none;
+    border:none;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    padding: 7px 12px;
+    border-radius:100px;
+    color: #94A7B3;
+    margin-right: 20px;
+    cursor:pointer;
+}
+.header .botones-header button:hover {
+background: #E7E7E7;
+}
+.header .botones-header .avatar {
+width:  30px;
+height: 30px;
+    display: inline-block;
+}
+.header .botones-header .avatar img{
+    vertical-align: top;
+    width: 100%;
+    border-radius:100px;
+}
+
+
+/*------------------------ MENU LATERAL ------------------- */
+.menu-lateral{
+    grid-area: menu;
+    background: #DBD8DD;
+    overflow:hidden;
+    transition: transform 0.3s ease;
+    font-size: 17px;
+}
+.menu-lateral a{
+    display: block;
+    padding: 25px 38px;
+    color: #000; 
+    min-width: 800px;
+}
+.menu-lateral a:hover{
+    background: #E5E1DC;
+}
+.menu-lateral a.active{
+    background: #E5E1DC;
+    font-weight: bold;
+}
+.menu-lateral .fa-solid{
+    color: #94A7B3;
+    margin-right: 32px;
+    width: 20px;
+    text-align: center;
+}
+.menu-lateral a.active .fa-solid{
+color: #190933;
+}
+.menu-lateral hr{
+    margin:20px 0;
+    border: 1px solid #dfdfdf;    
+}
+/* ------------------------------------------------------------- */
+.main{
+    grid-area: contenido;   
+    background: #E9E5D8; /* E9E5D8 */
+    padding:40px;
+}
+/* Estilos generales */
+body {
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+    background-color: #e9e5d8a8; /* E9E5D8 */
+    ;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+/* Fondo */
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+/* Estilos para la sección de registro */
+.registration {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 100px;
+    max-width: 600px; /* Limitar el ancho máximo para evitar que sea demasiado ancho en pantallas grandes */
+    width: 90%; /* Añadir margen en pantallas pequeñas */
+}
+
+.registration .title {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.registration .description {
+    font-size: 20px;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Estilos para los campos de entrada y mensajes de error */
+.registration .form-group {
+    margin-bottom: 32px;
+    position: relative;
+    text-align: left;
+}
+
+.registration .form-group label {
+    font-size: 18px;
+    color: #333;
+    text-align: left;
+}
+
+/* Estilos para los contenedores de etiquetas */
+.label-container {
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.registration input[type="text"],
+.registration input[type="email"],
+.registration input[type="password"] {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Estilos para los mensajes de error */
+.error-message {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: red;
+    display: none;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+/* Estilos para el botón de registro */
+.registration .btn-register {
+    background-color: #190933;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.registration .btn-register:hover {
+    background-color: #111;
+    transform: scale(1.1);
+}
+
+/* Keyframes para el brillo */
+@keyframes shine {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Media queries para hacerlo responsive */
+@media screen and (max-width: 768px) {
+    .registration {
+        padding: 30px;
+    }
+    .menu-lateral {
+        transform: translateX(-100%); /* Mover la barra lateral fuera de la pantalla */
+        display: none; /* Ocultarla para evitar interacciones */
+    }
+    .registration .title {
+        font-size: 28px;
+    }
+
+    .registration .description {
+        font-size: 18px;
+    }
+
+    .registration input[type="text"],
+    .registration input[type="email"],
+    .registration input[type="password"] {
+        font-size: 14px;
+    }
+
+    .registration .btn-register {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
+
+
+/*------------------------ MEDIA QUERY ------------------- */
+@media screen and (max-width: 1200px){
+    .header .contenedor-logo .logo span{
+        display: none;
+    }
+    .header .barra-busqueda input {
+        min-width: 100%;
+    }
+    .main .como-funciona-image {
+        display: none;
+}
+@media screen and (max-width: 992px){
+ 
+}
+}
+@media screen and (max-width: 768px){
+    .contenedor {
+        grid-template-columns: 1fr; /* Cambiamos a una sola columna */
+        grid-template-rows: auto auto; /* Añadimos filas adicionales para el contenido */
+        grid-template-areas: 
+            "header"
+            "menu"
+            "contenido"; /* Reorganizamos el área de contenido */    
+    }
+    .header {
+        padding: 20px;
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+        grid-template-areas: "logo iconos"
+                             "busqueda busqueda"; 
+    }    
+    .header .contenedor-logo .logo span {
+        display: inline;
+    }
+    .header .barra-busqueda input {
+        min-width: auto;
+        width: 100%;
+    }
+    .main .como-funciona {
+        flex-direction: column;
+    }
+
+      /* Estilos para el botón "Empezar Ahora" */
+      .main .como-funciona button.btn-empezar {
+        width: 100%; /* Hacemos que el botón ocupe todo el ancho disponible */
+        margin-right: 0; /* Quitamos el margen derecho */
+    }
+    /* Ajustamos el tamaño del logo en el encabezado */
+    .header .contenedor-logo .logo {
+        font-size: 14px; /* Reducimos el tamaño de la fuente del logo */
+    }
+    .main .como-funciona-content {
+        margin-bottom: 20px;
+    }
+
+    .main .como-funciona-image {
+        text-align: center;
+    }   
+}
+@media screen and (max-width: 576px){
+    .main .como-funciona .titulo,
+    .main .como-funciona ol {
+        display: none;
+    }
+    /* Mostrar el botón */
+    .main .como-funciona button.btn-empezar {
+        display: block;
+    }
+}
+

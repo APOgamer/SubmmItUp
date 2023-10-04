@@ -13,3 +13,8 @@ window.addEventListener('resize',()=>{
     comprobarancho();
 })
 comprobarancho();
+
+document.querySelector('.barra-busqueda button').addEventListener('click', function() {
+    const inputValue = document.querySelector('.barra-busqueda input').value.trim();
+    window.location.href = `buscar.html?query=${encodeURIComponent(inputValue)}`;
+});

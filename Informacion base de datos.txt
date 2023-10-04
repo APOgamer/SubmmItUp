@@ -1,0 +1,74 @@
+Tabla: resumenes_generales
+Datos de la tabla "resumenes_generales":
+Datos de la tabla "usuarios":
+usuarios:
+  id: 777
+  nombre_usuario: Usuario777
+  email: usuario777@example.com
+  contrasena: contrasena777
+Datos de la tabla "resumenes_usuario":  
+Datos de la tabla "resumenes_favoritos":
+Datos de la tabla "resumenes":
+resumenes:
+  id: 10868
+  titulo_resumen: Tarea Assembler Simple 8-bit Assember Simulator
+  etiquetas:
+  descripcion_resumen: Tarea Assembler Simple
+  materia_ciclo: Tarea Assembler
+  lugar_estudios: Tarea
+  usuario_id: 777
+  puntuacion: null
+  Atributo: id                   Tipo de dato: integer (Primary Key)
+  Atributo: id_resumen_original  Tipo de dato: integer
+  Atributo: puntuacion           Tipo de dato: integer
+  Atributo: descripcion_resumen  Tipo de dato: text
+  Atributo: materia_ciclo        Tipo de dato: character varying
+  Atributo: lugar_estudios       Tipo de dato: character varying
+  Atributo: titulo_resumen       Tipo de dato: character varying
+  Atributo: etiquetas            Tipo de dato: ARRAY
+
+
+Tabla: usuarios
+  Atributo: id              Tipo de dato: integer (Primary Key)
+  Atributo: nombre_usuario  Tipo de dato: character varying
+  Atributo: email           Tipo de dato: character varying
+  Atributo: contrasena      Tipo de dato: character varying
+
+
+Tabla: resumenes_usuario
+  Atributo: id                   Tipo de dato: integer (Primary Key)
+  Atributo: usuario_id           Tipo de dato: integer
+  Atributo: id_resumen_general   Tipo de dato: integer
+  Atributo: puntuacion           Tipo de dato: integer
+  Atributo: descripcion_resumen  Tipo de dato: text
+  Atributo: materia_ciclo        Tipo de dato: character varying
+  Atributo: lugar_estudios       Tipo de dato: character varying
+  Atributo: titulo_resumen       Tipo de dato: character varying
+  Atributo: etiquetas            Tipo de dato: ARRAY
+
+
+Tabla: resumenes_favoritos
+  Atributo: id                  Tipo de dato: integer (Primary Key)
+  Atributo: usuario_id          Tipo de dato: integer
+  Atributo: id_resumen_general  Tipo de dato: integer
+  Atributo: puntuacion          Tipo de dato: integer
+
+
+Tabla: resumenes
+  Atributo: id                   Tipo de dato: integer (Primary Key)
+  Atributo: usuario_id           Tipo de dato: integer
+  Atributo: puntuacion           Tipo de dato: integer
+  Atributo: descripcion_resumen  Tipo de dato: text
+  Atributo: materia_ciclo        Tipo de dato: character varying
+  Atributo: lugar_estudios       Tipo de dato: character varying
+  Atributo: titulo_resumen       Tipo de dato: character varying
+  Atributo: etiquetas            Tipo de dato: ARRAY
+
+
+Tabla: archivos_resumenes
+  Atributo: id          Tipo de dato: integer (Primary Key)
+  Atributo: resumen_id  Tipo de dato: integer
+  Atributo: archivo     Tipo de dato: bytea
+
+y ahora si quiero extraer ese mensaje JSON que duelve el post para poder obtener tambien a parte de la informacion de todos los resumenes, la informacion de la tabla de archivos resumenes que se podrá obtener porque esa tabla tiene un atributo llamado resumen_id que coincide con el atributo id de los resumenes encontrados, y una vez accedido a la tabla archivos resumenes podre acceder a el atributo archivo que contiene el pdf del resumen para poder mostrarlo para que lo descargen los usuarios que filtran los resumenes, qué hago para cumplir todo esto?
+CREATE EXTENSION IF NOT EXISTS pg_trgm;

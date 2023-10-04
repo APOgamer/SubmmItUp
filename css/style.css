@@ -140,6 +140,7 @@ height: 30px;
     grid-area: menu;
     background: #DBD8DD;
     overflow:hidden;
+    font-size: 17px;
 }
 .menu-lateral a{
     display: block;
@@ -168,7 +169,19 @@ color: #190933;
     border: 1px solid #dfdfdf;
 }
 /*------------------------ Contenido ------------------- */
-
+@keyframes brillo {
+    0% {
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.7;
+    }
+  }
+  
+  
 .main{
     grid-area: contenido;   
     background: #E9E5D8; /* E9E5D8 */
@@ -176,6 +189,8 @@ color: #190933;
 }
 .main .titulo{
     margin-bottom:20px;
+    font-size: 24px;
+    animation: brillo 2s ease-in-out infinite;
 }
 .main .grid-videos {
     margin-top: 10px;

@@ -45,3 +45,19 @@ const comandoDDLArchivosResumenes = `
 `;
 
 //ejecutarDDLComando(comandoDDLArchivosResumenes);
+
+
+
+ALTER TABLE resumenes
+ADD COLUMN puntuacion INTEGER;
+
+CREATE TABLE IF NOT EXISTS resumenes_generales (
+  id SERIAL PRIMARY KEY,
+  id_resumen_original INT,
+  etiquetas TEXT[] NOT NULL,
+  descripcion_resumen TEXT NOT NULL,
+  materia_ciclo VARCHAR(255) NOT NULL,
+  lugar_estudios VARCHAR(255),
+  titulo_resumen VARCHAR(255) NOT NULL,
+  puntuacion INTEGER
+);

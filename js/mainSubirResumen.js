@@ -293,3 +293,67 @@ async function enviarFormulario() {
       });
     }
   }
+
+
+
+
+// Obtiene el elemento del campo de entrada de "Lugar de Estudios"
+const lugarEstudiosInput = document.getElementById('lugar-estudios');
+
+// Define un arreglo con las opciones válidas para el criterio dorado
+const opcionesValidas = [
+  'PUCP',
+  'UNMSM',
+  'UPCH',
+  'UPC',
+  'UNSA',
+  'UNSAAC',
+  'UNI',
+  'USMP',
+  'UP',
+  'UNALM',
+  'UDEP',
+  'ULIMA',
+  'USIL',
+  'UNITRU',
+  'UCSUR',
+  'UNAP',
+  'URP',
+  'UPN',
+  'UNFV',
+  'UNAP',
+  'UCSM',
+  'UCV',
+  'UCSP',
+  'UNP'
+];
+
+// Agrega un evento "input" al campo de entrada para verificar el criterio
+lugarEstudiosInput.addEventListener('input', () => {
+  const inputValue = lugarEstudiosInput.value.trim().toUpperCase();
+
+  // Verifica si el valor del campo de entrada está en el arreglo de opciones válidas
+  if (opcionesValidas.includes(inputValue)) {
+    // Aplica el estilo dorado al campo de entrada
+    lugarEstudiosInput.style.color = 'gold';
+    lugarEstudiosInput.style.textShadow = '0 0 10px gold';
+  } else {
+    // Si no coincide, vuelve al estilo original
+    lugarEstudiosInput.style.color = '#444';
+    lugarEstudiosInput.style.textShadow = 'none';
+  }
+});
+
+
+document.querySelector('.barra-busqueda button').addEventListener('click', function() {
+  const inputValue = document.querySelector('.barra-busqueda input').value.trim();
+  window.location.href = `buscar.html?query=${encodeURIComponent(inputValue)}`;
+});
+
+
+
+
+
+
+
+

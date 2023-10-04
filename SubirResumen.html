@@ -29,7 +29,7 @@
             </a>
             <a href="notificaciones.html">
                 <button><i class="fas fa-bell"></i></button></a>            
-            <a href="#registrar" class="avatar">
+            <a href="Registrarse.html" class="avatar">
                 <img src="img/avatar.jpg">
              </a>
         </div>
@@ -39,7 +39,7 @@
         <a href="guardados.html"><i class="fa-solid fa-bookmark"></i>Guardados</a>
         <a href="historial.html"><i class="fa-solid fa-clock-rotate-left"></i>Historial</a>
         <hr>
-        <a href="misResumenes"><i class="fa-solid fa-street-view"></i>Mis Resúmenes</a>
+        <a href="misResumenes.html"><i class="fa-solid fa-street-view"></i>Mis Resúmenes</a>
         <a href="calificarResumenes.html"><i class="fa-solid fa-user-check"></i>Calificar Resúmenes</a>
         <hr>
         <a href="ajustes.html"><i class="fa-solid fa-wrench"></i>Ajustes</a>
@@ -64,7 +64,7 @@
 
         <!-- Campo para las etiquetas -->
         <div class="campo-formulario">
-            <label for="etiquetas">Etiquetas (separadas por comas con el prefijo #):</label>
+            <label for="etiquetas">Etiquetas (separadas por comas, ejemplo: Matematica, Primaria):</label>
             <input type="text" id="etiquetas" class="campo active" name="etiquetas" maxlength="100"><!-- Por ejemplo, se permite un máximo de 100 caracteres -->
             <div class="contador-caracteres">100 caracteres restantes</div>
         </div>
@@ -85,9 +85,35 @@
 
         <!-- Campo para el lugar de estudios proveniente (opcional) -->
         <div class="campo-formulario">
-            <label for="lugar-estudios">Lugar de Estudios (opcional):</label>
-            <input type="text" id="lugar-estudios" name="lugar-estudios" maxlength="50"> <!-- Por ejemplo, se permite un máximo de 50 caracteres -->
+            <label for="lugar-estudios">Lugar de Estudios (opcional, selecciona sugerencias exactas al hacer clic para facilitar la búsqueda):</label>
+            <input type="text" id="lugar-estudios" name="lugar-estudios" maxlength="50" list="sugerencias-lugares"> <!-- Por ejemplo, se permite un máximo de 50 caracteres -->
             <div class="contador-caracteres">50 caracteres restantes</div>
+            <datalist id="sugerencias-lugares">
+                <option value="PUCP">
+                <option value="UNMSM">
+                <option value="UPCH">
+                <option value="UPC">
+                <option value="UNSA">
+                <option value="UNSAAC">
+                <option value="UNI">
+                <option value="USMP">
+                <option value="UP">
+                <option value="UNALM">
+                <option value="UDEP">
+                <option value="ULIMA">
+                <option value="USIL">
+                <option value="UNITRU">
+                <option value="UCSUR">
+                <option value="UNAP">
+                <option value="URP">
+                <option value="UPN">
+                <option value="UNFV">
+                <option value="UNAP">
+                <option value="UCSM">
+                <option value="UCV">
+                <option value="UCSP">
+                <option value="UNP">
+            </datalist>
         </div>
         <br>
        

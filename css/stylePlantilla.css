@@ -166,6 +166,7 @@ height: 30px;
     grid-area: menu;
     background: #DBD8DD;
     overflow:hidden;
+    font-size: 17px;
 }
 .menu-lateral a{
     display: block;
