@@ -175,12 +175,12 @@ async function showAllTables() {
 
 
 // Llama a la función showAllTablesPlus
-/*
+
   showAllTablesPlus()
     .catch(err => {
       console.error('Error al mostrar las tablas y atributos:', err);
     });
-    */
+ /*  */
    
     
   
@@ -197,13 +197,13 @@ const comandoSQL = `
 //ejecutarComandoSQL(comandoSQL);
 
  
-// Llamar a la función para obtener y mostrar los datos de todas las tablas
-
+  // Llamar a la función para obtener y mostrar los datos de todas las tablas
+ /*
 getAllDataFromAllTables()
     .catch((error) => {
         console.error('Error:', error);
     });
-    /*
+ 
 */
 
 /* 

@@ -144,7 +144,7 @@ app.post('/guardar-resumen', upload.single('archivo-resumen'), async (req, res) 
     // Convierte las etiquetas en un array aquí
       
     let etiquetasArray = [];
-    if (typeof data['etiquetas'] === 'string') {
+    if (typeof data['etiquetas'] === Array) {
       etiquetasArray = data['etiquetas'].split(',').filter(tag => tag.trim() !== ' ');
     }
     // Agregar el campo id-usuario (temporalmente, reemplazar con el valor correcto)
@@ -155,6 +155,8 @@ app.post('/guardar-resumen', upload.single('archivo-resumen'), async (req, res) 
       INSERT INTO resumenes (usuario_id, id, titulo_resumen, etiquetas, descripcion_resumen, materia_ciclo, lugar_estudios)
       VALUES ($1, $2, $3, $4, $5, $6, $7)
     `;
+    //      etiquetasArray, // Envía el array de etiquetas aquí
+
     await pool.query(insertQuery, [
       idUsuario, // Agrega el id-usuario aquí
       resumenId, // Agrega la ID generada aquí

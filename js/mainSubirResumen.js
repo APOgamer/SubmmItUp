@@ -203,8 +203,8 @@ async function enviarFormulario() {
       const materiaCiclo = document.getElementById('materia-ciclo').value.trim();
       const lugarEstudios = document.getElementById('lugar-estudios').value.trim();
   
-      // Convierte el texto de etiquetas en un array eliminando los caracteres "#" y dividiendo por "#"
-      const etiquetas = etiquetasText.split(',').filter(tag => tag.trim() !== ' ');
+      // Convierte el texto de etiquetas en un array eliminando los caracteres "," y dividiendo por ","
+      //const etiquetas = etiquetasText.split(',').filter(tag => tag.trim() !== ' ');
   
       // Obtén el archivo seleccionado
       const archivoSubida = document.getElementById('archivo-resumen').files[0];
@@ -345,10 +345,10 @@ lugarEstudiosInput.addEventListener('input', () => {
 });
 
 
-document.querySelector('.barra-busqueda button').addEventListener('click', function() {
-  const inputValue = document.querySelector('.barra-busqueda input').value.trim();
-  window.location.href = `buscar.html?query=${encodeURIComponent(inputValue)}`;
-});
+    document.querySelector('.barra-busqueda button').addEventListener('click', function() {
+        const inputValue = document.querySelector('.barra-busqueda input').value.trim();
+        window.location.href = `buscar.html?query=${encodeURIComponent(inputValue)}`;
+    });
 
 
 
